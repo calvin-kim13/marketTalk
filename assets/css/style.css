@@ -1,0 +1,59 @@
+/* VARIABLES */
+:root {
+    --main-background: #F2F2F2;
+    --header-font: 'Teko', sans-serif;
+}
+
+/* BODY */
+body {
+    background-color: var(--main-background);
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--header-font);
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+#header-icon {
+    font-size: 3rem;
+}
+
+/* MAIN CONTENT */
+#container {
+    border: 2px solid green;
+}
+
+/* SIDEBAR CONTENT */
+#stock-display {
+    border: 2px solid red;
+}
+
+#stock-search {
+    border: 2px solid pink;
+    margin: 1rem auto;
+}
+
+.watchlist {
+    border: 2px solid yellow;
+    margin: 1rem;
+    line-height: 3rem;
+}
+
+/* NEWS CONTENT */
+#news {
+    border: 2px solid purple;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    margin: 1.3rem;
+    font-size: 2rem;
+    font-family: var(--header-font)
+}
+
