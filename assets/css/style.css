@@ -4,6 +4,15 @@
     --header-font: 'Teko', sans-serif;
 }
 
+<<<<<<< HEAD
+=======
+/* BODY */
+body {
+    background-color: var(--main-background);
+}
+
+/* HEADER */
+>>>>>>> main
 header {
     display: flex;
     justify-content: center;
@@ -13,6 +22,7 @@ header {
     font-size: 4rem;
 }
 
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -29,5 +39,43 @@ hr.solid {
 
 #latest-news {
 
+=======
+#header-icon {
+    font-size: 3rem;
+}
+
+/* MAIN CONTENT */
+#container {
+    border: 2px solid green;
+}
+
+/* SIDEBAR CONTENT */
+#stock-display {
+    border: 2px solid red;
+}
+
+#stock-search {
+    border: 2px solid pink;
+    margin: 1rem auto;
+}
+
+.watchlist {
+    border: 2px solid yellow;
+    margin: 1rem;
+    line-height: 3rem;
+}
+
+/* NEWS CONTENT */
+#news {
+    border: 2px solid purple;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    margin: 1.3rem;
+    font-size: 2rem;
+    font-family: var(--header-font)
+>>>>>>> main
 }
 
