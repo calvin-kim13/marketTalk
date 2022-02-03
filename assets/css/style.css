@@ -4,12 +4,15 @@
     --header-font: 'Teko', sans-serif;
 }
 
+<<<<<<< HEAD
+=======
 /* BODY */
 body {
     background-color: var(--main-background);
 }
 
 /* HEADER */
+>>>>>>> main
 header {
     display: flex;
     justify-content: center;
@@ -19,6 +22,24 @@ header {
     font-size: 4rem;
 }
 
+<<<<<<< HEAD
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+#sidebar {
+
+}
+
+#latest-news {
+
+=======
 #header-icon {
     font-size: 3rem;
 }
@@ -55,5 +76,6 @@ h3 {
     margin: 1.3rem;
     font-size: 2rem;
     font-family: var(--header-font)
+>>>>>>> main
 }
 
