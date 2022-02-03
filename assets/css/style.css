@@ -1,0 +1,33 @@
+/* VARIABLES */
+:root {
+    --main-background: #F2F2F2;
+    --header-font: 'Teko', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--header-font);
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+#sidebar {
+
+}
+
+#latest-news {
+
+}
+
