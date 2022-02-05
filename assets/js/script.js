@@ -48,11 +48,10 @@ let betaContainerEl = document.querySelector('.beta');
 let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
 
-// NEWS VARIABLES
-let newsHeader = document.querySelector('#news-article-header');
-
-
-stockContainerEl.classList.remove('stock-card')
+// HIDE STOCK SCREENER
+stockContainerEl.classList.remove('stock-card');
+lowPriceEl.classList.remove('low-price');
+highPriceEl.classList.remove('high-price');
 
 // SEARCH STOCK WHEN USER PRESSES 'ENTER' KEY
 input.addEventListener('keyup', function(e) {
@@ -92,6 +91,8 @@ async function getBasicFinancial(e) {
     betaHeaderEl.textContent = 'Beta';
     beatNumberEl.textContent = data.metric.beta.toFixed(2);
     stockContainerEl.classList.add('stock-card')
+    lowPriceEl.classList.add('low-price');
+    highPriceEl.classList.add('high-price');
 };
 
 // GETTING SEARCHED STOCK PRICES
@@ -209,24 +210,3 @@ getAmazonStockQuote();
 getNetflixStockQuote();
 getGoogleStockQuote();
 
-
-// NEWS API
-async function getRelatedNews() {
-    let newsUrl = `https://api.marketaux.com/v1/news/all?exchanges=NYSE&filter_entities=true&limit=3&published_after=2022-02-04T19:28&api_token=cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q`
-    let response = await fetch(newsUrl);
-    let data = await response.json();
-    console.log(data);
-}
-getRelatedNews();
-
-
-async function getTechNews() {
-    let techNewsUrl = `https://api.marketaux.com/v1/news/all?industries=Technology&filter_entities=true&limit=3&published_after=2022-02-04T19:30&api_token=cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q`;
-    let response = await fetch(techNewsUrl);
-    let data = await response.json();
-    console.log(data.data)
-    for (let i = 0; i < data.data.length; i++) {
-        newsHeader.textContent = data.data.title
-    }
-}
-getTechNews()
