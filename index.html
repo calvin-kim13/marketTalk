@@ -40,17 +40,16 @@
                     </div>
                     <!-- Watchlist -->
                     <p class="menu-label">
-                        Watchlist
+                        Popular Quotes
                     </p> 
-                    <div id="new-saved-stocks-watchlist"></div>
                     <button>
                         <ul>
                             <li class="ticker" id="facebook-ticker">FB</li>
                             <li class="name" id="facebook-name">Meta Platforms, Inc.</li>
                         </ul>
                         <ul>
-                            <li class="current-price" id="facebook-current-price">4</li>
-                            <li class="price-change gain loss" id="facebook-price-change">2</li>
+                            <li class="current-price" id="facebook-current-price"></li>
+                            <li class="price-change gain loss" id="facebook-price-change"></li>
                         </ul>
                     </button>
                     <button>
@@ -59,8 +58,8 @@
                             <li class="name" id="apple-name">Apple Inc.</li>
                         </ul>
                         <ul>
-                            <li class="current-price" id="apple-current-price">4</li>
-                            <li class="price-change gain loss" id="apple-price-change">2</li>
+                            <li class="current-price" id="apple-current-price"></li>
+                            <li class="price-change gain loss" id="apple-price-change"></li>
                         </ul>
                     </button>
                     <button>
@@ -69,8 +68,8 @@
                             <li class="name" id="amazon-name">Amazon.com, Inc.</li>
                         </ul>
                         <ul>
-                            <li class="current-price" id="amazon-current-price">4</li>
-                            <li class="price-change gain loss" id="amazon-price-change">2</li>
+                            <li class="current-price" id="amazon-current-price"></li>
+                            <li class="price-change gain loss" id="amazon-price-change"></li>
                         </ul>
                     </button>
                     <button>
@@ -79,8 +78,8 @@
                             <li class="name" id="netflix-name">Netflix, Inc.</li>
                         </ul>
                         <ul>
-                            <li class="current-price" id="netflix-current-price">4</li>
-                            <li class="price-change gain loss" id="netflix-price-change">2</li>
+                            <li class="current-price" id="netflix-current-price"></li>
+                            <li class="price-change gain loss" id="netflix-price-change"></li>
                         </ul>
                     </button>
                     <button>
@@ -89,8 +88,8 @@
                             <li class="name" id="google-name">Alphabet Inc.</li>
                         </ul>
                         <ul>
-                            <li class="current-price" id="google-current-price">4</li>
-                            <li class="price-change gain loss" id="google-price-change">2</li>
+                            <li class="current-price" id="google-current-price"></li>
+                            <li class="price-change gain loss" id="google-price-change"></li>
                         </ul>
                     </button>
                 </aside>
@@ -100,6 +99,47 @@
                 <div id="png-latest-news-container">
                     <!-- PNG -->
                     <img src="https://d9hhrg4mnvzow.cloudfront.net/subscriptions.seekingalpha.com/lp_premium_acq_g/6224bf0b-image-3-01_12300hu2300gw00000g000.png" id="news-png" alt="pic">
+                    <div class="stock-card">
+                        <div class="stock-symbol-header">
+                            <div>
+                                <h3 class="stock-ticker"></h3> 
+                                <p class="stock-name"></p>
+                            </div>
+                            <div>
+                                <h4 class="card-current-price"></h4>
+                                <p class="card-price-change"></p>
+                            </div>
+                        </div>
+                        <div class="card-high-low">
+                            <h6 class="year-low-high-header"></h6>
+                            <div class="low-high-prices">
+                                <p class="low-price"></p>
+                                <p class="high-price"></p>
+                            </div>
+                        </div>
+                        <div class="basic-financials">
+                            <div class="market-cap">
+                                <h6 class="market-cap-header"></h6>
+                                <p class="market-cap-number"></p>
+                            </div>
+                            <div class="pe-ratio">
+                                <h6 class="pe-header"></h6>
+                                <p class="pe-number"></p>
+                            </div>
+                            <div class="eps">
+                                <h6 class="eps-header"></h6>
+                                <p class="eps-number"></p>
+                            </div>
+                            <div class="yield">
+                                <h6 class="yield-header"></h6>
+                                <p class="yield-number"></p>
+                            </div>
+                            <div class="beta">
+                                <h6 class="beta-header"></h6>
+                                <p class="beta-number"></p>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Latest News Content -->
                     <h1 id="latest-news-header">Latest News</h1>
                     <div class="box news-article-box">
