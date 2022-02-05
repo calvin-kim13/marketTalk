@@ -1,10 +1,17 @@
 /* VARIABLES */
 :root {
-    --header-font: 'Source Serif Pro', serif;
-    /* --side-bar-font: 'Source Serif Pro', serif; */
-    --news-article-font: 'Source Serif Pro', serif;
-    --light-grey: rgb(211, 211, 211);
-    --container-background: rgb(248, 248, 248);
+    --header-font: 'Roboto Condensed', sans-serif;
+    --side-bar-font: 'Roboto Condensed', sans-serif;
+    --news-article-font: 'Roboto Condensed', sans-serif;
+    --light-grey: #f2f2f2;
+    --container-background: #f7f7f7;
+    --md-grey: #c4c4c4;
+    --dark-grey: #8b8b8b;
+    --black-font: #000;
+    --white-font: #ffffff;
+    --gain: #228b22;
+    --loss: #ff0800;
+
 }
 
 /* GLOBAL SELECTORS */
@@ -22,23 +29,24 @@ header {
     font-family: var(--header-font);
     font-weight: bold;
     font-size: 4rem;
-    color: #f5f5f5;
+    color: var(--light-grey);
 }
 
 /* SIDE BAR */
 aside {
     margin: 2rem 0 0 2rem;
-    background-color: var(--container-background);
+    background-color: var(--light-grey);
     -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+        box-shadow: 0 0 10px var(--md-grey);
     height: 100vh;
     padding: 1rem;
-    border: 1px solid var(--light-grey);
+    border: 1px solid var(--md-grey);
     height: 60%;
 }
 
 .menu-label {
-    border-bottom: 1px solid var(--light-grey);
+    color: var(--black-font);
+    border-bottom: 1px solid var(--md-grey);
     margin: 0 auto;
 }
 
@@ -48,13 +56,13 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--aside-background);
+    background-color: var(--light-grey);
     border-style: none;
-    border-bottom: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--md-grey);
 }
 
 button:hover {
-    background-color: var(--light-grey);
+    background-color: var(--md-grey);
     cursor: pointer;
     transition: transform 150ms;
     transform: scale(1.03);
@@ -67,7 +75,7 @@ button:hover {
 
 .name {
     font-size: .6rem;
-    color: grey;
+    color: var(--dark-grey);
     text-align: justify;
 }
 
@@ -80,12 +88,12 @@ button:hover {
 }
 
 .gain {
-    color: green;
+    color: var(--gain);
     font-weight: bold;
 }
 
 .loss {
-    color: red;
+    color: var(--loss);
     font-weight: bold;
 }
 
@@ -97,24 +105,26 @@ button:hover {
 
 /* NEWS PNG */
 #news-png {
-    background-color: var(--container-background);
-    border: 1px solid var(--light-grey);
+    background-color: var(--light-grey);
+    border: 1px solid var(--md-grey);
     width: 95%;
     margin: 0 0 0 1rem;
     -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+        box-shadow: 0 0 10px var(--md-grey);
 }
 
 /* SEARCHED STOCK DATA CONTAINER */
 .stock-card {
+    font-family: var(--news-article-font);
+    color: var(--black-font);
     background-color: var(--container-background);
     width: 95%;
     margin: 1rem auto;
     margin-bottom: 2rem;
-    border: 1px solid var(--light-grey);
+    border: 1px solid var(--md-grey);
     padding: 1rem;
     -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+        box-shadow: 0 0 10px var(--md-grey);
 }
 
 .stock-symbol-header {
@@ -128,7 +138,7 @@ button:hover {
 }
 
 .stock-name {
-    color: grey;
+    color: var(--dark-grey);
     font-size: .6rem;
 }
 
@@ -159,18 +169,18 @@ button:hover {
 }
 
 .low-price {
-    background-color: red;
+    background-color: var(--loss);
     margin-right: .4rem;
     font-weight: bold;
-    color: white;
+    color: var(--white-font);
     padding: .3rem;
 }
 
 .high-price {
-    background-color: green;
+    background-color: var(--gain);
     margin-left: .4rem;
     font-weight: bold;
-    color: white;
+    color: var(--white-font);
     padding: .3rem;
 }
 
@@ -256,10 +266,10 @@ button:hover {
 }
 
 .news-article-box {
-    background-color: var(--container-background);
+    background-color: var(--light-grey);
     border: 1px solid var(--light-grey);
     margin: 1rem 0 1rem 1rem;
     width: 95%;
-    -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+    -webkit-box-shadow: 0 0 10px var(--dark-grey);
+        box-shadow: 0 0 10px var(--dark-grey);
 }
