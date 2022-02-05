@@ -34,6 +34,7 @@ aside {
     height: 100vh;
     padding: 1rem;
     border: 1px solid var(--light-grey);
+    height: 60%;
 }
 
 .menu-label {
@@ -108,10 +109,10 @@ button:hover {
 .stock-card {
     background-color: var(--container-background);
     width: 95%;
-    margin: 1rem 1rem;
+    margin: 1rem auto;
     margin-bottom: 2rem;
     border: 1px solid var(--light-grey);
-    padding: 2rem;
+    padding: 1rem;
     -webkit-box-shadow: 0 0 10px var(--light-grey);
         box-shadow: 0 0 10px var(--light-grey);
 }
@@ -123,16 +124,16 @@ button:hover {
 
 .stock-ticker {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .stock-name {
     color: grey;
-    font-size: .8rem;
+    font-size: .6rem;
 }
 
 .card-current-price {
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .card-price-change {
@@ -149,7 +150,8 @@ button:hover {
 
 .year-low-high-header {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1rem;
+    margin-bottom: .2rem;
 }
 
 .low-high-prices {
@@ -175,6 +177,7 @@ button:hover {
 .basic-financials {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .market-cap {
@@ -195,6 +198,8 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: .5rem;
+    margin-left: .5rem;
 }
 
 .pe-header {
@@ -244,10 +249,10 @@ button:hover {
 
 /* NEWS */
 #latest-news-header {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 1rem 0 0 1rem;
     font-family: var(--news-article-font);
-    text-align: center;
+    text-align: justify;
 }
 
 .news-article-box {

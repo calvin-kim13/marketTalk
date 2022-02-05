@@ -70,7 +70,7 @@ async function getBasicFinancial(e) {
     let response = await fetch(basicFinancialUrl);
     let data = await response.json();
     stockTickerEl.textContent = data.symbol;
-    annualHighLowHeaderEl.textContent = '52 Week Low - 52 Week High';
+    annualHighLowHeaderEl.textContent = '52W Low - 52W High';
     lowPriceEl.textContent = data.metric['52WeekLow'];
     highPriceEl.textContent = data.metric['52WeekHigh'];
     marketCapHeaderEl.textContent = 'Mkt Cap'
