@@ -1,11 +1,10 @@
 /* VARIABLES */
 :root {
-    --main-background: #f5f5f5;
     --header-font: 'Source Serif Pro', serif;
     /* --side-bar-font: 'Source Serif Pro', serif; */
     --news-article-font: 'Source Serif Pro', serif;
     --light-grey: rgb(211, 211, 211);
-    --aside-background: rgb(248, 248, 248);
+    --container-background: rgb(248, 248, 248);
 }
 
 /* GLOBAL SELECTORS */
@@ -29,11 +28,12 @@ header {
 /* SIDE BAR */
 aside {
     margin: 2rem 0 0 2rem;
-    background-color: var(--aside-background);
+    background-color: var(--container-background);
     -webkit-box-shadow: 0 0 10px var(--light-grey);
         box-shadow: 0 0 10px var(--light-grey);
     height: 100vh;
     padding: 1rem;
+    border: 1px solid var(--light-grey);
 }
 
 .menu-label {
@@ -91,24 +91,170 @@ button:hover {
 /* PNG AND NEWS CONTAINER */
 #png-latest-news-container {
     height: fit-content;
-    margin: 2rem auto;
+    margin: 2rem 1rem;
 }
 
 /* NEWS PNG */
 #news-png {
+    background-color: var(--container-background);
     border: 1px solid var(--light-grey);
     width: 95%;
     margin: 0 0 0 1rem;
+    -webkit-box-shadow: 0 0 10px var(--light-grey);
+        box-shadow: 0 0 10px var(--light-grey);
+}
+
+/* SEARCHED STOCK DATA CONTAINER */
+.stock-card {
+    background-color: var(--container-background);
+    width: 95%;
+    margin: 1rem 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--light-grey);
+    padding: 2rem;
+    -webkit-box-shadow: 0 0 10px var(--light-grey);
+        box-shadow: 0 0 10px var(--light-grey);
+}
+
+.stock-symbol-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stock-ticker {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.stock-name {
+    color: grey;
+    font-size: .8rem;
+}
+
+.card-current-price {
+    font-size: 2rem;
+}
+
+.card-price-change {
+    font-size: .8rem;
+}
+
+.card-high-low {
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.year-low-high-header {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.low-high-prices {
+    display: flex;
+}
+
+.low-price {
+    background-color: red;
+    margin-right: .4rem;
+    font-weight: bold;
+    color: white;
+    padding: .3rem;
+}
+
+.high-price {
+    background-color: green;
+    margin-left: .4rem;
+    font-weight: bold;
+    color: white;
+    padding: .3rem;
+}
+
+.basic-financials {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.market-cap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.market-cap-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+
+.pe-ratio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pe-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+
+.eps {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.eps-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+
+.yield {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.yield-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+
+.beta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.beta-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: underline;
 }
 
 /* NEWS */
 #latest-news-header {
     font-size: 2rem;
     margin: 1rem 0 0 1rem;
-    font-family: var(--news-article-font)
+    font-family: var(--news-article-font);
+    text-align: center;
 }
 
 .news-article-box {
+    background-color: var(--container-background);
+    border: 1px solid var(--light-grey);
     margin: 1rem 0 1rem 1rem;
     width: 95%;
+    -webkit-box-shadow: 0 0 10px var(--light-grey);
+        box-shadow: 0 0 10px var(--light-grey);
 }
