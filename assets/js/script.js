@@ -1,4 +1,4 @@
-// GLOBAL VARIABLES
+// ASIDE VARIABLES
 let facebookCurrentPrice = document.querySelector('#facebook-current-price')
 let facebookPriceChange = document.querySelector('#facebook-price-change')
 let appleCurrentPrice = document.querySelector('#apple-current-price');
@@ -14,7 +14,6 @@ let googlePriceChange = document.querySelector('#google-price-change');
 let submitBtn = document.querySelector('button');
 let input = document.querySelector('#stock-input');
 let savedStocksWatchlistEl = document.querySelector('#new-saved-stocks-watchlist');
-let newsHeader = document.querySelector('#news-article-header');
 
 // STOCK CARD VARIABLES
 let stockContainerEl = document.querySelector('.stock-card');
@@ -48,6 +47,10 @@ let yieldNumberEl = document.querySelector('.yield-number');
 let betaContainerEl = document.querySelector('.beta');
 let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
+
+// NEWS VARIABLES
+let newsHeader = document.querySelector('#news-article-header');
+
 
 stockContainerEl.classList.remove('stock-card')
 
@@ -208,11 +211,22 @@ getGoogleStockQuote();
 
 
 // NEWS API
-async function getRelatedNews(e) {
-    e.preventDefault();
-    let newsUrl = `https://api.marketaux.com/v1/news/all?symbols=FB,APPL,AMZN,NFLX,GOOGL&filter_entities=true&language=en&api_token=cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q`
+async function getRelatedNews() {
+    let newsUrl = `https://api.marketaux.com/v1/news/all?exchanges=NYSE&filter_entities=true&limit=3&published_after=2022-02-04T19:28&api_token=cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q`
     let response = await fetch(newsUrl);
     let data = await response.json();
     console.log(data);
 }
-// getRelatedNews();
+getRelatedNews();
+
+
+async function getTechNews() {
+    let techNewsUrl = `https://api.marketaux.com/v1/news/all?industries=Technology&filter_entities=true&limit=3&published_after=2022-02-04T19:30&api_token=cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q`;
+    let response = await fetch(techNewsUrl);
+    let data = await response.json();
+    console.log(data.data)
+    for (let i = 0; i < data.data.length; i++) {
+        newsHeader.textContent = data.data.title
+    }
+}
+getTechNews()
