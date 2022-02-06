@@ -33,7 +33,8 @@ aside {
         box-shadow: 0 0 10px var(--light-grey);
     padding: 1rem;
     border: 1px solid var(--light-grey);
-    height: 70%;
+    height: 96%;
+
 }
 
 .menu-label {

@@ -48,10 +48,96 @@ let betaContainerEl = document.querySelector('.beta');
 let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
 
+// NEWS VARIABLES
+let marketauxKey = "scotzkxoU6tor1UNg3otiealSCuIJVvVfFEva6Yj";
+let latestNewsEl = document.querySelector('#latest-news-header');
+
+// FUNCTION TO GET DATE, WITH A DIFFERENCE OF `difference` days
+var getDateDifference = function(difference) {
+    let today = new Date();
+    let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDay()- difference);
+    return lastWeek.toISOString().slice(0,10);
+}
+
+// GET TODAY'S DATE; SUBTRACT 7 DAYS FROM IT.
+let firstDate = getDateDifference(7);
+
+// FUNCTION THAT GETS THE TRENDING NEWS. TAKES DATE AND THE PAGE NUMBER
+async function getTrendingNews(dateOf, page) {
+    let trendingStocksURL = `https://api.marketaux.com/v1/news/all?&language=en&published_after=${dateOf}&page=${page}&api_token=${marketauxKey}`;
+    let response = await fetch(trendingStocksURL);
+    let news = await response.json();
+    news.data.forEach(result => {
+        createNewsCards(result);
+    });
+
+    console.log(news);
+}
+
+// FUNCTION THAT DYNAMICALLY CREATES NEWS CARDS 
+var createNewsCards = function(newsArticles) {
+    let cardFormatEl = document.createElement('div');
+        cardFormatEl.classList = 'box news-article-box';
+
+        let newsContainerEl = document.createElement('article');
+        newsContainerEl.classList.add('media')
+        cardFormatEl.append(newsContainerEl);
+        
+        let newsContainerFormatEl = document.createElement('div');
+        newsContainerFormatEl.classList.add('media-left');
+        newsContainerEl.append(newsContainerFormatEl);
+
+        let newsImageContainerEl = document.createElement('figure');
+        newsImageContainerEl.classList = 'image is-128x128 has-image-centered';
+        newsContainerFormatEl.append(newsImageContainerEl);
+
+        let imageEl = document.createElement('img');
+        // Class image for css styling. Change if need be.
+        imageEl.classList = 'is-rounded';
+        // If the image is loaded, make the image url from the API
+        if(imageLoaded(imageEl)) {
+            imageEl.setAttribute('src', newsArticles['image_url']);
+        } else { // Otherwise, make it the stock
+            imageEl.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRfcFnHFv_0MtuEj0kDcrrefVzmL_oxTsDKw&usqp=CAU');
+        }
+        imageEl.setAttribute('alt', newsArticles['title'] + ' Image');
+        newsImageContainerEl.append(imageEl);
+
+        let newsTextFormatEl = document.createElement('div');
+        newsTextFormatEl.classList.add('media-content');
+
+        let newsContentFormatEl = document.createElement('div');
+        newsContentFormatEl.classList.add('content');
+        newsTextFormatEl.append(newsContentFormatEl);
+        
+        let newsLinkEl = document.createElement('a');
+        // News article title. Change the class if you need to for CSS styling
+        newsLinkEl.classList.add('card-header-title');
+        newsLinkEl.setAttribute('href', newsArticles['url']);
+        newsLinkEl.setAttribute('target', '_blank');
+        newsLinkEl.append(newsArticles['title']);
+        newsContentFormatEl.append(newsLinkEl);
+
+        let newsDescriptionFormatEl = document.createElement('div');
+        newsDescriptionFormatEl.classList.add('content');
+        // If the article has no description, warn the user. 
+        if (newsArticles['description'] === '') {
+            newsDescriptionFormatEl.append('This article has no description.');
+        } else { // Otherwise, use the API's description for the article
+            newsDescriptionFormatEl.append(newsArticles['description']);
+        }
+
+        insertAfter(cardFormatEl, latestNewsEl);
+        insertAfter(newsTextFormatEl, newsContainerFormatEl);
+        insertAfter(newsDescriptionFormatEl, newsContentFormatEl);
+}
+
 // HIDE STOCK SCREENER
-stockContainerEl.classList.remove('stock-card');
-lowPriceEl.classList.remove('low-price');
-highPriceEl.classList.remove('high-price');
+var hideMoreStockInfo = function() {
+  stockContainerEl.classList.remove('stock-card');
+  lowPriceEl.classList.remove('low-price');
+  highPriceEl.classList.remove('high-price');
+}
 
 // SEARCH STOCK WHEN USER PRESSES 'ENTER' KEY
 input.addEventListener('keyup', function(e) {
@@ -204,9 +290,24 @@ async function getGoogleStockQuote() {
     };
 };
 
-getFacebookStockQuote();
-getAppleStockQuote();
-getAmazonStockQuote();
-getNetflixStockQuote();
-getGoogleStockQuote();
+var insertAfter = function(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
 
+// Function to initialize everything
+var initialize = function() {
+    hideMoreStockInfo()
+    getTrendingNews(firstDate, 1);
+    getTrendingNews(firstDate, 2);
+    getFacebookStockQuote();
+    getAppleStockQuote();
+    getAmazonStockQuote();
+    getNetflixStockQuote();
+    getGoogleStockQuote();
+}
+
+var imageLoaded = function(image) {
+    return !(image.complete && (image.naturalWidth !== 0));
+}
+
+initialize();
