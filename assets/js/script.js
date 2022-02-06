@@ -132,7 +132,12 @@ var createNewsCards = function(newsArticles) {
         insertAfter(newsDescriptionFormatEl, newsContentFormatEl);
 }
 
-stockContainerEl.classList.remove('stock-card')
+// HIDE STOCK SCREENER
+var hideMoreStockInfo = function() {
+  stockContainerEl.classList.remove('stock-card');
+  lowPriceEl.classList.remove('low-price');
+  highPriceEl.classList.remove('high-price');
+}
 
 // SEARCH STOCK WHEN USER PRESSES 'ENTER' KEY
 input.addEventListener('keyup', function(e) {
@@ -172,6 +177,8 @@ async function getBasicFinancial(e) {
     betaHeaderEl.textContent = 'Beta';
     beatNumberEl.textContent = data.metric.beta.toFixed(2);
     stockContainerEl.classList.add('stock-card')
+    lowPriceEl.classList.add('low-price');
+    highPriceEl.classList.add('high-price');
 };
 
 // GETTING SEARCHED STOCK PRICES
@@ -289,6 +296,7 @@ var insertAfter = function(newNode, referenceNode) {
 
 // Function to initialize everything
 var initialize = function() {
+    hideMoreStockInfo()
     getTrendingNews(firstDate, 1);
     getTrendingNews(firstDate, 2);
     getFacebookStockQuote();

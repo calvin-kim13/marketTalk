@@ -31,10 +31,10 @@ aside {
     background-color: var(--container-background);
     -webkit-box-shadow: 0 0 10px var(--light-grey);
         box-shadow: 0 0 10px var(--light-grey);
-    height: 100vh;
     padding: 1rem;
     border: 1px solid var(--light-grey);
     height: 96%;
+
 }
 
 .menu-label {
