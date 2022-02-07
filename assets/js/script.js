@@ -51,25 +51,37 @@ let beatNumberEl = document.querySelector('.beta-number');
 // NEWS VARIABLES
 let marketauxKey = "scotzkxoU6tor1UNg3otiealSCuIJVvVfFEva6Yj";
 let latestNewsEl = document.querySelector('#latest-news-header');
+let parentNewsContainerEl = document.querySelector('#png-latest-news-container');
 
 // FUNCTION TO GET DATE, WITH A DIFFERENCE OF `difference` days
 var getDateDifference = function(difference) {
     let today = new Date();
-    let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDay()- difference);
+    let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDay()-difference);
     return lastWeek.toISOString().slice(0,10);
 }
 
 // GET TODAY'S DATE; SUBTRACT 7 DAYS FROM IT.
 let firstDate = getDateDifference(7);
 
+var getRandomInt = function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max-min) + min);
+}
+
+var displayNewsCards = function(newsObject) {
+    newsObject.data.forEach(result => {
+        createNewsCards(result);
+    })
+}
+
 // FUNCTION THAT GETS THE TRENDING NEWS. TAKES DATE AND THE PAGE NUMBER
-async function getTrendingNews(dateOf, page) {
-    let trendingStocksURL = `https://api.marketaux.com/v1/news/all?&language=en&published_after=${dateOf}&page=${page}&api_token=${marketauxKey}`;
+async function getTrendingNews(dateOf) {
+    let trendingStocksURL = `https://api.marketaux.com/v1/news/all?&language=en&published_after=${dateOf}&page=${getRandomInt(1, 100)}&api_token=${marketauxKey}`;
     let response = await fetch(trendingStocksURL);
     let news = await response.json();
-    news.data.forEach(result => {
-        createNewsCards(result);
-    });
+
+    displayNewsCards(news);
 
     console.log(news);
 }
@@ -132,8 +144,16 @@ var createNewsCards = function(newsArticles) {
         insertAfter(newsDescriptionFormatEl, newsContentFormatEl);
 }
 
+// FUNCTION TO REMOVE NEWS CARDS
+var removeNewsCards = function(parentElement) {
+    for (let i=0; i<3;i++) {
+        let lastChild = parentElement.lastElementChild;
+        parentElement.removeChild(lastChild);
+    }
+}
+
 // HIDE STOCK SCREENER
-var hideMoreStockInfo = function() {
+hideMoreStockInfo = function() {
   stockContainerEl.classList.remove('stock-card');
   lowPriceEl.classList.remove('low-price');
   highPriceEl.classList.remove('high-price');
@@ -146,9 +166,21 @@ input.addEventListener('keyup', function(e) {
         getSearchedStockPrice(e)
         searchStockName(e);
         getBasicFinancial(e);
+        searchStockNews(e);
         e.currentTarget.value = '';
     };
 });
+
+// FUNCTION THAT RETRIEVES THE STOCK SYMBOL AND PRINTS NEWS
+async function searchStockNews(e) {
+    e.preventDefault();
+    removeNewsCards(parentNewsContainerEl);
+    let searchValue = input.value;
+    let newsStockSearchURL = `https://api.marketaux.com/v1/news/all?symbols=${searchValue}&filter_entities=true&language=en&api_token=${marketauxKey}`;
+    let response = await fetch(newsStockSearchURL);
+    let news = await response.json();
+    displayNewsCards(news);
+}
 
 // GET BASIC FINANCIAL WHEN STOCK IS SEARCHED 
 async function getBasicFinancial(e) {
@@ -290,15 +322,16 @@ async function getGoogleStockQuote() {
     };
 };
 
+// FUNCTION TO INSERT AN HTML ELEMENT AS A SIBLING TO A REFERENCE ELEMENT
 var insertAfter = function(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-// Function to initialize everything
+// FUNCTION THAT WILL INITIALIZE EVERYTHING
 var initialize = function() {
     hideMoreStockInfo()
-    getTrendingNews(firstDate, 1);
-    getTrendingNews(firstDate, 2);
+    getTrendingNews(firstDate);
+    getTrendingNews(firstDate);
     getFacebookStockQuote();
     getAppleStockQuote();
     getAmazonStockQuote();
@@ -306,8 +339,10 @@ var initialize = function() {
     getGoogleStockQuote();
 }
 
+// FUNCTION TO CHECK IF THE IMAGE HAS BEEN PROPERLY LOADED ONTO THE WEB PAGE
 var imageLoaded = function(image) {
     return !(image.complete && (image.naturalWidth !== 0));
 }
 
+// CALLING THE INITIALIZE FUNCTION
 initialize();
