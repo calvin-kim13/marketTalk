@@ -1,10 +1,15 @@
 /* VARIABLES */
 :root {
     --header-font: 'Source Serif Pro', serif;
-    /* --side-bar-font: 'Source Serif Pro', serif; */
     --news-article-font: 'Source Serif Pro', serif;
-    --light-grey: rgb(211, 211, 211);
-    --container-background: rgb(248, 248, 248);
+    --light-grey: #f2f2f2;
+    --md-grey: #c4c4c4;
+    --dark-grey: #8b8b8b;
+    --news-content-font: 'Source Serif Pro', sans-serif;
+    --white-font: #ffffff;
+    --black-font: #000000;
+    --gain: #228b22;
+    --loss: #ff0800;
 }
 
 /* GLOBAL SELECTORS */
@@ -12,6 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* background-color: var(--light-grey); */
 }
 
 /* HEADER */
@@ -19,46 +25,48 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: var(--header-font);
-    font-weight: bold;
+    font-family: var(--news-content-font);
     font-size: 4rem;
-    color: #f5f5f5;
+}
+
+#main-header {
+    color: var(--white-font);
 }
 
 /* SIDE BAR */
 aside {
     margin: 2rem 0 0 2rem;
-    background-color: var(--container-background);
-    -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+    background-color: var(--light-grey);
+    -webkit-box-shadow: 0 0 10px var(--md-grey);
+        box-shadow: 0 0 10px var(--md-grey);
     padding: 1rem;
     border: 1px solid var(--light-grey);
-    height: 96%;
-
+    height: 96.8%;
+    border-radius: 5px;
 }
 
 .menu-label {
-    border-bottom: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--md-grey);
     margin: 0 auto;
 }
 
 button {
     width: 100%;
-    height: 8%;
+    height: 3%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--aside-background);
     border-style: none;
-    border-bottom: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--md-grey);
 }
 
-button:hover {
-    background-color: var(--light-grey);
+/* button:hover {
+    background-color: var(--md-grey);
     cursor: pointer;
     transition: transform 150ms;
     transform: scale(1.03);
-}
+} */
 
 .ticker {
     font-weight: bold;
@@ -67,7 +75,7 @@ button:hover {
 
 .name {
     font-size: .6rem;
-    color: grey;
+    color: var(--dark-grey);
     text-align: justify;
 }
 
@@ -80,12 +88,12 @@ button:hover {
 }
 
 .gain {
-    color: green;
+    color: var(--gain);
     font-weight: bold;
 }
 
 .loss {
-    color: red;
+    color: var(--loss);
     font-weight: bold;
 }
 
@@ -97,24 +105,25 @@ button:hover {
 
 /* NEWS PNG */
 #news-png {
-    background-color: var(--container-background);
+    background-color: var(--light-grey);
     border: 1px solid var(--light-grey);
     width: 95%;
     margin: 0 0 0 1rem;
-    -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+    -webkit-box-shadow: 0 0 10px var(--md-grey);
+        box-shadow: 0 0 10px var(--md-grey);
+    border-radius: 5px;
 }
 
 /* SEARCHED STOCK DATA CONTAINER */
 .stock-card {
-    background-color: var(--container-background);
+    background-color: var(--light-grey);
     width: 95%;
     margin: 1rem auto;
     margin-bottom: 2rem;
-    border: 1px solid var(--light-grey);
+    border: 1px solid var(--md-grey);
     padding: 1rem;
-    -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+    -webkit-box-shadow: 0 0 10px var(--md-grey);
+        box-shadow: 0 0 10px var(--md-grey);
 }
 
 .stock-symbol-header {
@@ -128,7 +137,7 @@ button:hover {
 }
 
 .stock-name {
-    color: grey;
+    color: var(--dark-grey);
     font-size: .6rem;
 }
 
@@ -141,11 +150,18 @@ button:hover {
 }
 
 .card-high-low {
-    height: 10rem;
+    height: 6.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(209, 209, 209);
+    border: 1px solid var(--md-grey);
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 10px var(--md-grey);
+        box-shadow: 0 0 10px var(--md-grey);
+    margin: 1rem 0 1rem 0;
+    padding: .5rem;
 }
 
 .year-low-high-header {
@@ -159,18 +175,18 @@ button:hover {
 }
 
 .low-price {
-    background-color: red;
+    background-color: var(--loss);
     margin-right: .4rem;
     font-weight: bold;
-    color: white;
+    color:var(--white-font);
     padding: .3rem;
 }
 
 .high-price {
-    background-color: green;
+    background-color: var(--gain);
     margin-left: .4rem;
     font-weight: bold;
-    color: white;
+    color:var(--white-font);
     padding: .3rem;
 }
 
@@ -213,6 +229,8 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: .5rem;
+    margin-left: .5rem;
 }
 
 .eps-header {
@@ -226,6 +244,8 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: .5rem;
+    margin-left: .5rem;
 }
 
 .yield-header {
@@ -239,6 +259,8 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: .5rem;
+    margin-left: .5rem;
 }
 
 .beta-header {
@@ -251,15 +273,44 @@ button:hover {
 #latest-news-header {
     font-size: 2.5rem;
     margin: 1rem 0 0 1rem;
-    font-family: var(--news-article-font);
+    font-family: var(--news-content-font);
     text-align: justify;
+    color: var(--black-font);
 }
 
 .news-article-box {
-    background-color: var(--container-background);
+    background-color: var(--light-grey);
     border: 1px solid var(--light-grey);
     margin: 1rem 0 1rem 1rem;
     width: 95%;
-    -webkit-box-shadow: 0 0 10px var(--light-grey);
-        box-shadow: 0 0 10px var(--light-grey);
+    -webkit-box-shadow: 0 0 10px var(--md-grey);
+        box-shadow: 0 0 10px var(--md-grey);
+}
+
+.news-text-content {
+    padding-left: 1rem;
+    font-family: var(--news-content-font);
+}
+
+figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.news-img {
+    height: 13rem; 
+    width: 13rem;
+    object-fit: fill; 
+}
+
+.news-header {
+    color: var(--black-font);
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-align: justify;
+}
+
+.news-header:hover {
+    text-decoration: underline;
 }
