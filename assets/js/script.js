@@ -49,7 +49,7 @@ let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
 
 // NEWS VARIABLES
-let marketauxKey = "scotzkxoU6tor1UNg3otiealSCuIJVvVfFEva6Yj";
+let marketauxKey = "F8tVh7n4odhv52pePBUqGboZfKsKPrF0JYP90hGB";
 let latestNewsEl = document.querySelector('#latest-news-header');
 let parentNewsContainerEl = document.querySelector('#png-latest-news-container');
 
@@ -77,7 +77,7 @@ var displayNewsCards = function(newsObject) {
 
 // FUNCTION THAT GETS THE TRENDING NEWS. TAKES DATE AND THE PAGE NUMBER
 async function getTrendingNews(dateOf) {
-    let trendingStocksURL = `https://api.marketaux.com/v1/news/all?&language=en&published_after=${dateOf}&page=${getRandomInt(1, 100)}&api_token=${marketauxKey}`;
+    let trendingStocksURL = `https://api.marketaux.com/v1/news/all?&language=en&countries=us&language=en&published_after=${dateOf}&page=${getRandomInt(1, 100)}&api_token=${marketauxKey}`;
     let response = await fetch(trendingStocksURL);
     let news = await response.json();
 
@@ -100,38 +100,40 @@ var createNewsCards = function(newsArticles) {
         newsContainerEl.append(newsContainerFormatEl);
 
         let newsImageContainerEl = document.createElement('figure');
-        newsImageContainerEl.classList = 'image is-128x128 has-image-centered';
+        // newsImageContainerEl.classList = 'has-image-centered';
         newsContainerFormatEl.append(newsImageContainerEl);
 
         let imageEl = document.createElement('img');
         // Class image for css styling. Change if need be.
-        imageEl.classList = 'is-rounded';
+        imageEl.classList = 'news-img';
         // If the image is loaded, make the image url from the API
         if(imageLoaded(imageEl)) {
             imageEl.setAttribute('src', newsArticles['image_url']);
-        } else { // Otherwise, make it the stock
+        } else { // Otherwise, make it the stock image
             imageEl.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRfcFnHFv_0MtuEj0kDcrrefVzmL_oxTsDKw&usqp=CAU');
         }
+        console.log(imageLoaded(imageEl));
         imageEl.setAttribute('alt', newsArticles['title'] + ' Image');
         newsImageContainerEl.append(imageEl);
 
         let newsTextFormatEl = document.createElement('div');
         newsTextFormatEl.classList.add('media-content');
+        newsTextFormatEl.classList = 'news-text-content'
 
         let newsContentFormatEl = document.createElement('div');
-        newsContentFormatEl.classList.add('content');
+        newsContentFormatEl.classList = 'content main-content';
         newsTextFormatEl.append(newsContentFormatEl);
         
         let newsLinkEl = document.createElement('a');
         // News article title. Change the class if you need to for CSS styling
-        newsLinkEl.classList.add('card-header-title');
+        newsLinkEl.classList = 'news-header'
         newsLinkEl.setAttribute('href', newsArticles['url']);
         newsLinkEl.setAttribute('target', '_blank');
         newsLinkEl.append(newsArticles['title']);
         newsContentFormatEl.append(newsLinkEl);
 
         let newsDescriptionFormatEl = document.createElement('div');
-        newsDescriptionFormatEl.classList.add('content');
+        newsDescriptionFormatEl.classList = 'content mx-4';
         // If the article has no description, warn the user. 
         if (newsArticles['description'] === '') {
             newsDescriptionFormatEl.append('This article has no description.');
@@ -155,6 +157,7 @@ var removeNewsCards = function(parentElement) {
 // HIDE STOCK SCREENER
 hideMoreStockInfo = function() {
   stockContainerEl.classList.remove('stock-card');
+  annualHighLowContainerEl.classList.remove('card-high-low')
   lowPriceEl.classList.remove('low-price');
   highPriceEl.classList.remove('high-price');
 }
@@ -168,6 +171,7 @@ input.addEventListener('keyup', function(e) {
         getBasicFinancial(e);
         searchStockNews(e);
         e.currentTarget.value = '';
+        annualHighLowContainerEl.classList.add('card-high-low')
     };
 });
 
@@ -182,6 +186,56 @@ async function searchStockNews(e) {
     displayNewsCards(news);
 }
 
+// FUNCTION THAT WILL SHORTEN LARGE NUMBERS
+var rewriteNumber = function(number, maxDigit, forceDigit, unit) {
+    let roundedNumber = 0;
+    switch(unit) {
+        case "Tr":
+            roundedNumber = number/1e12;
+            break;
+        case "B":
+            roundedNumber = number/1e9;
+            break;
+        case "M":
+            roundedNumber = number/1e6;
+            break;
+        case "K":
+            roundedNumber = number/1e3;
+            break;
+        case "":
+            roundedNumber = number;
+            break;
+    }
+    if (maxDigit !== false) {
+        let tempValue = new RegExp('\\.\\d{' + (maxDigit + 1) + ',}$');
+        if (tempValue.test(('' + roundedNumber))) {
+            roundedNumber = roundedNumber.toFixed(maxDigit);
+        }
+    }
+    if (forceDigit !== false) {
+        roundedNumber = Number(roundedNumber).toFixed(forceDigit);
+    }
+    return roundedNumber + ' ' + unit;
+}
+
+// HELPER FUNCTION OF `rewriteNumber` FUNCTION
+var abbreviateNumber = function(number, maxDigit, forceDigit, forceUnit) {
+    number = Number(number);
+    forceUnit = forceUnit || false;
+    if(forceUnit !== false) {
+        return rewriteNumber(number, maxDigit, forceDigit, forceUnit);
+    }
+    let unit;
+    if (number >= 1e12) unit = "Tr";
+    else if (number >= 1e9) unit = "B";
+    else if (number >= 1e6) unit = 'M';
+    else if (number >= 1e3) unit = 'K';
+    else {
+        unit = "";
+    }
+    return rewriteNumber(number, maxDigit, forceDigit, unit);
+}
+
 // GET BASIC FINANCIAL WHEN STOCK IS SEARCHED 
 async function getBasicFinancial(e) {
     e.preventDefault();
@@ -191,10 +245,12 @@ async function getBasicFinancial(e) {
     let data = await response.json();
     stockTickerEl.textContent = data.symbol;
     annualHighLowHeaderEl.textContent = '52W Low - 52W High';
-    lowPriceEl.textContent = data.metric['52WeekLow'];
-    highPriceEl.textContent = data.metric['52WeekHigh'];
+    lowPriceEl.textContent = data.metric['52WeekLow'].toFixed(2);
+    highPriceEl.textContent = data.metric['52WeekHigh'].toFixed(2);
     marketCapHeaderEl.textContent = 'Mkt Cap'
-    marketCapNumberEl.textContent = `${data.metric.marketCapitalization}B`;
+    // API's market cap
+    console.log(data.metric.marketCapitalization);
+    marketCapNumberEl.textContent = `${abbreviateNumber(Math.round(data.metric.marketCapitalization) * 1000000, 2, 2, false)}`;
     peHeaderEl.textContent = 'P/E';
     peNumberEl.textContent = data.metric.peBasicExclExtraTTM.toFixed(2);
     epsHeaderEl.textContent = 'EPS';
@@ -229,9 +285,11 @@ async function getSearchedStockPrice(e) {
         cardPriceChangeEl.classList.add('price-change');
         if (data.d > 0) {
             cardPriceChangeEl.classList.add('gain')
+            cardPriceChangeEl.classList.remove('loss')
             cardPriceChangeEl.textContent = `+${data.d.toFixed(2)}`;
         } else {
             cardPriceChangeEl.classList.add('loss');
+            cardPriceChangeEl.classList.remove('gain');
             cardPriceChangeEl.textContent = `${data.d.toFixed(2)}`;
         };
     };
