@@ -49,7 +49,7 @@ let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
 
 // NEWS VARIABLES
-let marketauxKey = "F8tVh7n4odhv52pePBUqGboZfKsKPrF0JYP90hGB";
+let marketauxKey = "scotzkxoU6tor1UNg3otiealSCuIJVvVfFEva6Yj";
 let latestNewsEl = document.querySelector('#latest-news-header');
 let parentNewsContainerEl = document.querySelector('#png-latest-news-container');
 
