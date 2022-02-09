@@ -49,7 +49,7 @@ let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
 
 // NEWS VARIABLES
-let marketauxKey = "scotzkxoU6tor1UNg3otiealSCuIJVvVfFEva6Yj";
+let marketauxKey = "cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q";
 let latestNewsEl = document.querySelector('#latest-news-header');
 let parentNewsContainerEl = document.querySelector('#png-latest-news-container');
 
@@ -89,7 +89,7 @@ async function getTrendingNews(dateOf) {
 // FUNCTION THAT DYNAMICALLY CREATES NEWS CARDS 
 var createNewsCards = function(newsArticles) {
     let cardFormatEl = document.createElement('div');
-        cardFormatEl.classList = 'box news-article-box';
+        cardFormatEl.classList = 'box news-article-box news-container';
 
         let newsContainerEl = document.createElement('article');
         newsContainerEl.classList.add('media')
