@@ -47,6 +47,10 @@ let yieldNumberEl = document.querySelector('.yield-number');
 let betaContainerEl = document.querySelector('.beta');
 let betaHeaderEl = document.querySelector('.beta-header');
 let beatNumberEl = document.querySelector('.beta-number');
+let recommendationHeaderEl = document.createElement('h5');
+let buyRecEl = document.createElement('p');
+let holdRecEl = document.createElement('p');
+let sellRecEl = document.createElement('p');
 
 // NEWS VARIABLES
 let marketauxKey = "cT7GXdDSIcLAs41UKBeGY5odMkxy6XrcQupPMK4Q";
@@ -275,11 +279,6 @@ async function getRecommendation() {
     let recommendationUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${searchValue}&token=c7tl5miad3i8dq4u5t50`;
     let response = await fetch(recommendationUrl);
     let data = await response.json();
-    let recommendationHeaderEl = document.createElement('h5');
-    let buyRecEl = document.createElement('p');
-    let holdRecEl = document.createElement('p');
-    let sellRecEl = document.createElement('p');
-    stockContainerEl.append(recommendationHeaderEl, buyRecEl, holdRecEl, sellRecEl)
     recommendationHeaderEl.textContent = 'Recommendations:';
     let dataBuy = data[0].buy;
     let dataHold = data[0].hold;
@@ -292,6 +291,7 @@ async function getRecommendation() {
     holdRecEl.classList.add('hold');
     sellRecEl.classList.add('sell');
 }
+stockContainerEl.append(recommendationHeaderEl, buyRecEl, holdRecEl, sellRecEl)
 
 // GETTING SEARCHED STOCK PRICES
 async function getSearchedStockPrice() {
