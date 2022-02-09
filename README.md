@@ -36,7 +36,7 @@ FINANCIAL NEWS:
 ## Live urls:
 ---
 GITHUB:
-- https://github.com/calvin-kim13/stockNerds
+- https://github.com/calvin-kim13/marketTalk
 
 WEB PAGE:
-- https://calvin-kim13.github.io/stockNerds/
+- https://calvin-kim13.github.io/marketTalk/
