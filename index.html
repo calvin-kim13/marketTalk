@@ -35,9 +35,9 @@
                 <aside id="sidebar">
                     <!-- Searchbar -->
                     <div class="control has-icons-left">
-                        <input class="input is-small" id="stock-input" type="email" placeholder="SEARCH">
+                        <input class="input is-small" id="stock-input" type="email" placeholder="TICKER">
                         <span class="icon is-small is-left">
-                          <i class="fas fa-search"></i>
+                          <i class="fas fa-search search-icon"></i>
                         </span>
                     </div>
                     <!-- Watchlist -->
@@ -137,8 +137,20 @@
                     </div>
                 </aside>
                 <aside id="contact-aside">
-                    <h6>Send a message!</h6>
-                    <form action="mailto:calvinkim1230@gmail.com" method="post" name="emailform">
+                    <h6 id="contact-header">Contact Us</h6>
+                    <form action="mailto:calvinkim1230@gmail.com"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    name="EmailForm">
+                        Name:<br>
+                        <input type="text" size="19" name="Name" placeholder="Your Name"><br><br>
+                        Email:<br>
+                        <input type="email" name="Email" placeholder="Your Email"><br><br> 
+                        Message:<br> 
+                        <textarea name="Message" placeholder="Your Message" rows="8" cols="20"></textarea><br><br> 
+                        <button id= "contact-btn" type="submit" value="Submit">Send</button>
+                    </form>
+                    <!-- <form action="mailto:calvinkim1230@gmail.com" method="post" name="emailform">
                         <div class="field">
                             <label class="label">Name</label>
                             <div class="control">
@@ -168,7 +180,7 @@
                             <button class="is-link submit-btn">Submit</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </aside>
             </div>
             <!-- Hero and Latest News Container -->

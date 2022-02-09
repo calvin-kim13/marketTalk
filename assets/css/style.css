@@ -45,39 +45,14 @@ aside {
     border-radius: 5px;
 }
 
+#stock-input {
+    height: 2rem;
+    font-size: .8rem;
+    border-radius: 8px;
+}
+
 #contact-aside {
     height: 35.2%;
-}
-
-h6 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-    text-decoration: underline;
-}
-
-.btn-container {
-    display: flex;
-    justify-content: center;
-}
-
-.submit-btn {
-    background-color: var(--dark-grey);
-    color: var(--light-grey);
-    height: 3rem;
-    width: 6rem;
-    border-radius: 5px;
-    justify-content: center;
-    font-size: 1rem;
-    margin-top: 1rem;
-    font-weight: bold;
-}
-
-.submit-btn:hover {
-    background-color: var(--md-grey);
-    transition: transform 150ms;
-    transform: scale(1.03);
-    color: var(--dark-grey);
 }
 
 .menu-label {
@@ -194,8 +169,9 @@ button {
 
 .year-low-high-header {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: .2rem;
+    text-decoration: underline;
 }
 
 .low-high-prices {
@@ -297,6 +273,47 @@ button {
     text-decoration: underline;
 }
 
+.rec-header {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: .2rem;
+    text-decoration: underline;
+}
+
+.buy {
+    background-color: var(--gain);
+    font-weight: bold;
+    color: white;
+    width: 30%;
+    padding: .3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sell {
+    background-color: var(--loss);
+    font-weight: bold;
+    color: white;
+    width: 30%;
+    padding: .3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hold {
+    background-color: var(--dark-grey);
+    font-weight: bold;
+    color: white;
+    width: 30%;
+    padding: .3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* NEWS */
 #latest-news-header {
     font-size: 2.5rem;
@@ -341,6 +358,70 @@ figure {
 
 .news-header:hover {
     text-decoration: underline;
+}
+
+/* CONTACT US */
+#contact-aside {
+    font-family: var(--header-font);
+}
+
+#contact-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.4rem;
+}
+
+input {
+    font-size: .9rem;
+    height: 3.2rem;
+    width: 100%;
+    padding: .5rem;
+    border-radius: 8px;
+    border: 2px solid var(--dark-grey);
+    background-color: var(--light-grey);
+}
+
+input:active {
+    transition: transform 150ms;
+    transform: scale(1.03);
+}
+
+textarea {
+    font-size: .9rem;
+    width: 100%;
+    padding: .5rem;
+    border-radius: 8px;
+    border: 2px solid var(--dark-grey);
+    background-color: var(--light-grey);
+}
+
+textarea:active {
+    transition: transform 150ms;
+    transform: scale(1.03);
+}
+
+#contact-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 2.3rem;
+    width: 50%;
+    border: 2px solid var(--dark-grey);
+    border-radius: 8px;
+}
+
+#contact-btn:hover {
+    cursor: pointer;
+    transition: transform 150ms;
+    transform: scale(1.05);
+    background-color: var(--dark-grey);
+    color: white;
+}
+
+#contact-btn:active {
+    background-color: var(--md-grey);
+    color: var(--black-font);
 }
 
 /* FOOTER */
