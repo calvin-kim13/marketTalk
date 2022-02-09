@@ -166,9 +166,10 @@ hideMoreStockInfo = function() {
 input.addEventListener('keyup', function(e) {
     if (e.keyCode === 13) {
         e.preventDefault();
-        getSearchedStockPrice(e)
-        searchStockName(e);
-        getBasicFinancial(e);
+        getSearchedStockPrice()
+        searchStockName();
+        getBasicFinancial();
+        getRecommendation();
         searchStockNews(e);
         e.currentTarget.value = '';
         annualHighLowContainerEl.classList.add('card-high-low')
@@ -237,8 +238,7 @@ var abbreviateNumber = function(number, maxDigit, forceDigit, forceUnit) {
 }
 
 // GET BASIC FINANCIAL WHEN STOCK IS SEARCHED 
-async function getBasicFinancial(e) {
-    e.preventDefault();
+async function getBasicFinancial() {
     let searchValue = input.value;
     let basicFinancialUrl = `https://finnhub.io/api/v1/stock/metric?symbol=${searchValue}&metric=all&token=c7tl5miad3i8dq4u5t50`;
     let response = await fetch(basicFinancialUrl);
@@ -269,9 +269,32 @@ async function getBasicFinancial(e) {
     highPriceEl.classList.add('high-price');
 };
 
+// GET RECOMMENDATION OF STOCK 
+async function getRecommendation() {
+    let searchValue = input.value;
+    let recommendationUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${searchValue}&token=c7tl5miad3i8dq4u5t50`;
+    let response = await fetch(recommendationUrl);
+    let data = await response.json();
+    let recommendationHeaderEl = document.createElement('h5');
+    let buyRecEl = document.createElement('p');
+    let holdRecEl = document.createElement('p');
+    let sellRecEl = document.createElement('p');
+    stockContainerEl.append(recommendationHeaderEl, buyRecEl, holdRecEl, sellRecEl)
+    recommendationHeaderEl.textContent = 'Recommendations:';
+    let dataBuy = data[0].buy;
+    let dataHold = data[0].hold;
+    let dataSell = data[0].sell;
+    buyRecEl.textContent = `Buy: ${dataBuy}`;
+    holdRecEl.textContent = `Hold: ${dataSell}`;
+    sellRecEl.textContent = `Sell: ${dataHold}`;
+    recommendationHeaderEl.classList.add('rec-header')
+    buyRecEl.classList.add('buy');
+    holdRecEl.classList.add('hold');
+    sellRecEl.classList.add('sell');
+}
+
 // GETTING SEARCHED STOCK PRICES
-async function getSearchedStockPrice(e) {
-    e.preventDefault();
+async function getSearchedStockPrice() {
     let searchValue = input.value;
     let stockQuoteUrl = `https://finnhub.io/api/v1/quote?symbol=${searchValue}&token=c7tl5miad3i8dq4u5t50`;
     let response = await fetch(stockQuoteUrl);
@@ -279,8 +302,7 @@ async function getSearchedStockPrice(e) {
     if (data.d === null) {
         stockSymbolHeaderEl.textContent = 'ERROR'
     } else {
-        cardCurrentPriceEl.textContent = data.c
-        cardPriceChangeEl.textContent = data.d
+        cardCurrentPriceEl.textContent = data.c.toFixed(2)
         cardCurrentPriceEl.classList.add('current-price');
         cardPriceChangeEl.classList.add('price-change');
         if (data.d > 0) {
@@ -296,8 +318,7 @@ async function getSearchedStockPrice(e) {
 }; 
 
 // GETTING NAME OF STOCK AND SYMBOL
-async function searchStockName(e) {
-    e.preventDefault();
+async function searchStockName() {
     let searchValue = input.value;
     let stockSymbolUrl = `https://finnhub.io/api/v1/search?q=${searchValue}&token=c7tl5miad3i8dq4u5t50`;
     let response = await fetch(stockSymbolUrl);
