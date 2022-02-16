@@ -1,4 +1,4 @@
-# stockNerds
+# MARKET TALK
 
 ## Description
 The webpage is a financial website using stock screeners and also displays financial news related to the top companies in the world. Users can add and remove stocks to and from their watchlist so that their favorite stocks can be saved in the sidebar. When the user clicks on or searches for a stock, the stock chart, information, and news are displayed.
