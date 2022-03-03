@@ -22,16 +22,21 @@ To install this application, open `terminal` and clone in a directory.
  
     git clone  https://github.com/calvin-kim13/marketTalk.git
 
-Or, just visit https://calvin-kim13.github.io/marketTalk/ for the live webpage.
-
 ## Usage
 
-Once the application is installed, the user can make changes, or the user may scroll around the webpage if on the live site.
+Once the application is installed, the user can make changes, or the user may scroll around the webpage if on the live site. 
+
+The user can search a stock ticker symbol (e.g. AAPL) on the search bar and it will display the basic financial information of the stock. The news on the main page will also change accordingly.
 
 ### Screen shot of an example:
 ![Alt text](/assets/img/screenshot.png?raw=true "Optional Title")
-    
 
+## LIVE
+| DEPLOYMENT | URL | STATUS |
+| ---------- | --- | ------ |
+| Repository  | [GitHub Repo](https://github.com/calvin-kim13/marketTalk ) |  ACTIVE 🟢   |
+| Published Page  | [MARKET TALK](https://calvin-kim13.github.io/marketTalk/ ) |  ACTIVE 🟢   |
+    
 ## Credits
 
 - Marc Cabal
