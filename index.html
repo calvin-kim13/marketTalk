@@ -1,156 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>MARKET TALK</title>
-    <meta name="description"
-        content="A financial website using stock screeners and also displays financial news related to the top companies in the world.">
-    <meta name="author" content="stockNerds">
+    <meta
+      name="description"
+      content="A financial website using stock screeners and also displays financial news related to the top companies in the world."
+    />
+    <meta name="author" content="stockNerds" />
 
     <!-- <meta property="og:title" content=> -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Source+Serif+Pro&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Source+Serif+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
 
-<body>
+  <body>
     <header class="has-text-centered hero is-small has-background-dark">
-        <div>
-            <a id="main-header" href="index.html">MARKET TALK <i class="fas fa-chart-line" id="header-icon"></i></a>
-        </div>
+      <div>
+        <a id="main-header" href="index.html"
+          >MARKET TALK <i class="fas fa-chart-line" id="header-icon"></i
+        ></a>
+      </div>
     </header>
 
-    <main> 
-        <div class="columns">
-            <div class="column is-3 menu">
-                <!-- Sidebar Content -->
-                <aside id="sidebar">
-                    <!-- Searchbar -->
-                    <div class="control has-icons-left">
-                        <input class="input is-small" id="stock-input" type="email" placeholder="TICKER">
-                        <span class="icon is-small is-left">
-                          <i class="fas fa-search search-icon"></i>
-                        </span>
-                    </div>
-                    <!-- Watchlist -->
-                    <p class="menu-label">
-                        Popular Quotes
-                    </p> 
-                    <button>
-                        <ul>
-                            <li class="ticker" id="facebook-ticker">FB</li>
-                            <li class="name" id="facebook-name">Meta Platforms, Inc.</li>
-                        </ul>
-                        <ul>
-                            <li class="current-price" id="facebook-current-price"></li>
-                            <li class="price-change gain loss" id="facebook-price-change"></li>
-                        </ul>
-                    </button>
-                    <button>
-                        <ul>
-                            <li class="ticker" id="apple-ticker">AAPL</li>
-                            <li class="name" id="apple-name">Apple Inc.</li>
-                        </ul>
-                        <ul>
-                            <li class="current-price" id="apple-current-price"></li>
-                            <li class="price-change gain loss" id="apple-price-change"></li>
-                        </ul>
-                    </button>
-                    <button>
-                        <ul>
-                            <li class="ticker" id="amazon-ticker">AMZN</li>
-                            <li class="name" id="amazon-name">Amazon.com, Inc.</li>
-                        </ul>
-                        <ul>
-                            <li class="current-price" id="amazon-current-price"></li>
-                            <li class="price-change gain loss" id="amazon-price-change"></li>
-                        </ul>
-                    </button>
-                    <button>
-                        <ul>
-                            <li class="ticker" id="netflix-ticker">NFLX</li>
-                            <li class="name" id="netflix-name">Netflix, Inc.</li>
-                        </ul>
-                        <ul>
-                            <li class="current-price" id="netflix-current-price"></li>
-                            <li class="price-change gain loss" id="netflix-price-change"></li>
-                        </ul>
-                    </button>
-                    <button>
-                        <ul>
-                            <li class="ticker" id="google-ticker">GOOGL</li>
-                            <li class="name" id="google-name">Alphabet Inc.</li>
-                        </ul>
-                        <ul>
-                            <li class="current-price" id="google-current-price"></li>
-                            <li class="price-change gain loss" id="google-price-change"></li>
-                        </ul>
-                    </button>
-                    <div class="stock-card">
-                        <div class="stock-symbol-header">
-                            <div>
-                                <h3 class="stock-ticker"></h3> 
-                                <p class="stock-name"></p>
-                            </div>
-                            <div>
-                                <h4 class="card-current-price"></h4>
-                                <p class="card-price-change"></p>
-                            </div>
-                        </div>
-                        <div class="card-high-low">
-                            <h6 class="year-low-high-header"></h6>
-                            <div class="low-high-prices">
-                                <p class="low-price"></p>
-                                <p class="high-price"></p>
-                            </div>
-                        </div>
-                        <div class="basic-financials">
-                            <div class="market-cap">
-                                <h6 class="market-cap-header"></h6>
-                                <p class="market-cap-number"></p>
-                            </div>
-                            <div class="pe-ratio">
-                                <h6 class="pe-header"></h6>
-                                <p class="pe-number"></p>
-                            </div>
-                            <div class="eps">
-                                <h6 class="eps-header"></h6>
-                                <p class="eps-number"></p>
-                            </div>
-                            <div class="yield">
-                                <h6 class="yield-header"></h6>
-                                <p class="yield-number"></p>
-                            </div>
-                            <div class="beta">
-                                <h6 class="beta-header"></h6>
-                                <p class="beta-number"></p>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-                <aside id="contact-aside">
-                    <h6 id="contact-header">Contact Us</h6>
-                    <form action="mailto:calvinkim1230@gmail.com"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    name="EmailForm">
-                        Name:<br>
-                        <input type="text" size="19" name="Name" placeholder="Your Name"><br><br>
-                        Email:<br>
-                        <input type="email" name="Email" placeholder="Your Email"><br><br> 
-                        Message:<br> 
-                        <textarea name="Message" placeholder="Your Message" rows="8" cols="20"></textarea><br><br> 
-                        <button id= "contact-btn" type="submit" value="Submit">Send</button>
-                    </form>
-                    <!-- <form action="mailto:calvinkim1230@gmail.com" method="post" name="emailform">
+    <main>
+      <div class="columns">
+        <div class="column is-3 menu">
+          <!-- Sidebar Content -->
+          <aside id="sidebar">
+            <!-- Searchbar -->
+            <div class="control has-icons-left">
+              <input
+                class="input is-small"
+                id="stock-input"
+                type="email"
+                placeholder="TICKER"
+              />
+              <span class="icon is-small is-left">
+                <i class="fas fa-search search-icon"></i>
+              </span>
+            </div>
+            <!-- Watchlist -->
+            <p class="menu-label">Popular Quotes</p>
+            <button>
+              <ul>
+                <li class="ticker" id="facebook-ticker">META</li>
+                <li class="name" id="facebook-name">Meta Platforms, Inc.</li>
+              </ul>
+              <ul>
+                <li class="current-price" id="facebook-current-price"></li>
+                <li
+                  class="price-change gain loss"
+                  id="facebook-price-change"
+                ></li>
+              </ul>
+            </button>
+            <button>
+              <ul>
+                <li class="ticker" id="apple-ticker">AAPL</li>
+                <li class="name" id="apple-name">Apple Inc.</li>
+              </ul>
+              <ul>
+                <li class="current-price" id="apple-current-price"></li>
+                <li class="price-change gain loss" id="apple-price-change"></li>
+              </ul>
+            </button>
+            <button>
+              <ul>
+                <li class="ticker" id="amazon-ticker">AMZN</li>
+                <li class="name" id="amazon-name">Amazon.com, Inc.</li>
+              </ul>
+              <ul>
+                <li class="current-price" id="amazon-current-price"></li>
+                <li
+                  class="price-change gain loss"
+                  id="amazon-price-change"
+                ></li>
+              </ul>
+            </button>
+            <button>
+              <ul>
+                <li class="ticker" id="netflix-ticker">NFLX</li>
+                <li class="name" id="netflix-name">Netflix, Inc.</li>
+              </ul>
+              <ul>
+                <li class="current-price" id="netflix-current-price"></li>
+                <li
+                  class="price-change gain loss"
+                  id="netflix-price-change"
+                ></li>
+              </ul>
+            </button>
+            <button>
+              <ul>
+                <li class="ticker" id="google-ticker">GOOGL</li>
+                <li class="name" id="google-name">Alphabet Inc.</li>
+              </ul>
+              <ul>
+                <li class="current-price" id="google-current-price"></li>
+                <li
+                  class="price-change gain loss"
+                  id="google-price-change"
+                ></li>
+              </ul>
+            </button>
+            <div class="stock-card">
+              <div class="stock-symbol-header">
+                <div>
+                  <h3 class="stock-ticker"></h3>
+                  <p class="stock-name"></p>
+                </div>
+                <div>
+                  <h4 class="card-current-price"></h4>
+                  <p class="card-price-change"></p>
+                </div>
+              </div>
+              <div class="card-high-low">
+                <h6 class="year-low-high-header"></h6>
+                <div class="low-high-prices">
+                  <p class="low-price"></p>
+                  <p class="high-price"></p>
+                </div>
+              </div>
+              <div class="basic-financials">
+                <div class="market-cap">
+                  <h6 class="market-cap-header"></h6>
+                  <p class="market-cap-number"></p>
+                </div>
+                <div class="pe-ratio">
+                  <h6 class="pe-header"></h6>
+                  <p class="pe-number"></p>
+                </div>
+                <div class="eps">
+                  <h6 class="eps-header"></h6>
+                  <p class="eps-number"></p>
+                </div>
+                <div class="yield">
+                  <h6 class="yield-header"></h6>
+                  <p class="yield-number"></p>
+                </div>
+                <div class="beta">
+                  <h6 class="beta-header"></h6>
+                  <p class="beta-number"></p>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <aside id="contact-aside">
+            <h6 id="contact-header">Contact Us</h6>
+            <form
+              action="mailto:calvinkim1230@gmail.com"
+              method="POST"
+              enctype="multipart/form-data"
+              name="EmailForm"
+            >
+              Name:<br />
+              <input
+                type="text"
+                size="19"
+                name="Name"
+                placeholder="Your Name"
+              /><br /><br />
+              Email:<br />
+              <input
+                type="email"
+                name="Email"
+                placeholder="Your Email"
+              /><br /><br />
+              Message:<br />
+              <textarea
+                name="Message"
+                placeholder="Your Message"
+                rows="8"
+                cols="20"
+              ></textarea
+              ><br /><br />
+              <button id="contact-btn" type="submit" value="Submit">
+                Send
+              </button>
+            </form>
+            <!-- <form action="mailto:calvinkim1230@gmail.com" method="post" name="emailform">
                         <div class="field">
                             <label class="label">Name</label>
                             <div class="control">
@@ -181,44 +229,46 @@
                             </div>
                         </div>
                     </form> -->
-                </aside>
-            </div>
-            <!-- Hero and Latest News Container -->
-            <div class="column is-9">
-                <div id="png-latest-news-container">
-                    <!-- PNG -->
-                    <img src="https://d9hhrg4mnvzow.cloudfront.net/subscriptions.seekingalpha.com/lp_premium_acq_g/6224bf0b-image-3-01_12300hu2300gw00000g000.png" id="news-png" alt="pic">
-                    <!-- Latest News Content -->
-                    <h1 id="latest-news-header">Latest News</h1>
-                </div>
-            </div>
+          </aside>
         </div>
+        <!-- Hero and Latest News Container -->
+        <div class="column is-9">
+          <div id="png-latest-news-container">
+            <!-- PNG -->
+            <img
+              src="https://d9hhrg4mnvzow.cloudfront.net/subscriptions.seekingalpha.com/lp_premium_acq_g/6224bf0b-image-3-01_12300hu2300gw00000g000.png"
+              id="news-png"
+              alt="pic"
+            />
+            <!-- Latest News Content -->
+            <h1 id="latest-news-header">Latest News</h1>
+          </div>
+        </div>
+      </div>
     </main>
     <footer class="has-background-dark">
-        <div id="repo-collab-footer">
-            <div>
-                <p id="footer-github">Repository:</p>
-                <a href="https://github.com/calvin-kim13/stockNerds">Github</a>
-            </div>
-            <div id="collab-footer">
-                 <p id="footer-collaborators">Collaborators:</p>
-                  <a href="mailto:calvinkim1230@gmail.com">Calvin Kim</a>
-                  <a href="mailto:marccabal77@gmail.com">Marc Cabal</a>
-                  <a href="mailto:bretthockridge98@gmail.com">Brett Hockridge</a>
-            </div>
+      <div id="repo-collab-footer">
+        <div>
+          <p id="footer-github">Repository:</p>
+          <a href="https://github.com/calvin-kim13/stockNerds">Github</a>
         </div>
-        <div id="copyright-footer">
-            <p>Copyright &copy; 2022 MARKET TALK</p>
+        <div id="collab-footer">
+          <p id="footer-collaborators">Collaborators:</p>
+          <a href="mailto:calvinkim1230@gmail.com">Calvin Kim</a>
+          <a href="mailto:marccabal77@gmail.com">Marc Cabal</a>
+          <a href="mailto:bretthockridge98@gmail.com">Brett Hockridge</a>
         </div>
-        <div id="api-footer-container">
-            <p id="api-header">APIs:</p>
-            <a href="https://www.marketaux.com/">marketaux</a>
-            <a href="https://finnhub.io/">Finnhub</a>
-        </div>
+      </div>
+      <div id="copyright-footer">
+        <p>Copyright &copy; 2022 MARKET TALK</p>
+      </div>
+      <div id="api-footer-container">
+        <p id="api-header">APIs:</p>
+        <a href="https://www.marketaux.com/">marketaux</a>
+        <a href="https://finnhub.io/">Finnhub</a>
+      </div>
     </footer>
 
-
     <script src="./assets/js/script.js"></script>
-</body>
-
+  </body>
 </html>
